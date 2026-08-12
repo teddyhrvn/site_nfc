@@ -1,326 +1,386 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catalogue de Jeux</title>
-  <style>
-    /* --- RESET & VARIABLES GLOBALES --- */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
+  <title>Swiply — Multipliez vos avis clients & réseaux avec la technologie NFC</title>
+  
+  <!-- Favicons Swiply -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
 
-    :root {
-      --bg-color: #0f1219;
-      --card-bg: #1a1f2c;
-      --accent-color: #6366f1;
-      --accent-hover: #4f46e5;
-      --text-color: #f3f4f6;
-      --text-muted: #9ca3af;
-      --border-color: #2e3545;
-      --radius: 12px;
-    }
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome pour icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Fonts Google Premium -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      max-width: 100%;
-      overflow-x: hidden;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.5;
-    }
-
-    /* --- LAYOUT PRINCIPAL --- */
-    header {
-      background-color: var(--card-bg);
-      border-bottom: 1px solid var(--border-color);
-      padding: 1rem 1.5rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap; /* S'adapte si l'écran est très étroit */
-    }
-
-    .logo {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #fff;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .search-bar {
-      flex: 1;
-      max-width: 400px;
-      min-width: 200px;
-    }
-
-    .search-bar input {
-      width: 100%;
-      padding: 0.6rem 1rem;
-      border-radius: 20px;
-      border: 1px solid var(--border-color);
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      font-size: 0.9rem;
-      outline: none;
-    }
-
-    .search-bar input:focus {
-      border-color: var(--accent-color);
-    }
-
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1.5rem 1rem;
-    }
-
-    /* --- SECTION HERO / TITRE --- */
-    .hero {
-      margin-bottom: 2rem;
-      text-align: left;
-    }
-
-    .hero h1 {
-      font-size: 2rem;
-      margin: 0 0 0.5rem 0;
-      word-wrap: break-word;
-    }
-
-    .hero p {
-      color: var(--text-muted);
-      margin: 0;
-      font-size: 1rem;
-    }
-
-    /* --- FILTRES & BARRE D'ACTION --- */
-    .controls {
-      display: flex;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-      overflow-x: auto; /* Permet de scroller les filtres horizontalement sur mobile */
-      padding-bottom: 0.5rem;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .filter-btn {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      color: var(--text-color);
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.875rem;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: background-color 0.2s, border-color 0.2s;
-    }
-
-    .filter-btn.active, .filter-btn:hover {
-      background-color: var(--accent-color);
-      border-color: var(--accent-color);
-    }
-
-    /* --- GRILLE DE JEUX --- */
-    .games-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .game-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .game-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .game-cover {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      background-color: #2a2f3d;
-    }
-
-    .game-info {
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-
-    .game-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin: 0 0 0.5rem 0;
-      color: #fff;
-    }
-
-    .game-meta {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .btn-details {
-      margin-top: auto;
-      width: 100%;
-      padding: 0.6rem;
-      background-color: var(--accent-color);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-      transition: background-color 0.2s;
-    }
-
-    .btn-details:hover {
-      background-color: var(--accent-hover);
-    }
-
-    /* --- OPTIMISATIONS SPÉCIFIQUES MOBILE (< 768px) --- */
-    @media (max-width: 768px) {
-      header {
-        padding: 0.85rem 1rem;
-      }
-
-      .nav-container {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .search-bar {
-        max-width: 100%;
-      }
-
-      .hero h1 {
-        font-size: 1.5rem;
-      }
-
-      .hero p {
-        font-size: 0.9rem;
-      }
-
-      /* Passage de la grille en 2 colonnes ou 1 colonne fluide */
-      .games-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 0.85rem;
-      }
-
-      .game-info {
-        padding: 0.75rem;
-      }
-
-      .game-title {
-        font-size: 0.95rem;
-      }
-
-      .game-meta {
-        font-size: 0.75rem;
-        flex-direction: column;
-        gap: 0.2rem;
-      }
-
-      .btn-details {
-        padding: 0.5rem;
-        font-size: 0.85rem;
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              200: '#bae0fd',
+              500: '#2563eb',
+              600: '#1d4ed8',
+              700: '#1e40af',
+              900: '#0f172a',
+              950: '#0b0f19',
+            }
+          }
+        }
       }
     }
-  </style>
+  </script>
 </head>
-<body>
+<body class="bg-[#fafbfc] text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
 
-  <header>
-    <div class="nav-container">
-      <a href="#" class="logo">🎮 Ma Collection</a>
-      <div class="search-bar">
-        <input type="text" placeholder="Rechercher un jeu...">
+  <!-- En-tête / Navigation -->
+  <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <!-- Logo Swiply -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-brand-900 text-white flex items-center justify-center font-bold text-base shadow-sm group-hover:bg-brand-600 transition-colors">
+          <i class="fa-solid fa-wifi rotate-90 text-sm"></i>
+        </div>
+        <span class="font-display text-2xl font-extrabold tracking-tight text-slate-900">Swiply<span class="text-brand-600">.</span></span>
+      </a>
+
+      <!-- Menu -->
+      <nav class="hidden md:flex items-center gap-9 text-sm font-medium text-slate-600">
+        <a href="#pourquoi" class="hover:text-brand-600 transition-colors">Pourquoi le NFC ?</a>
+        <a href="#solutions" class="hover:text-brand-600 transition-colors">Nos plaques</a>
+        <a href="#faq" class="hover:text-brand-600 transition-colors">FAQ</a>
+      </nav>
+
+      <!-- CTA Nav -->
+      <div class="flex items-center gap-4">
+        <a href="#contact" class="hidden sm:inline-flex items-center justify-center text-sm font-semibold text-slate-700 hover:text-slate-900 px-4 py-2 transition-colors">
+          Espace Client
+        </a>
+        <a href="#contact" class="bg-brand-900 hover:bg-brand-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-sm hover:shadow transition-all duration-200">
+          Commander mes plaques
+        </a>
       </div>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <h1>Ma Bibliothèque de Jeux</h1>
-      <p>Gère, évalue et suis la progression de tes jeux vidéo.</p>
+    <!-- Section Hero -->
+    <section class="max-w-7xl mx-auto px-6 pt-12 pb-20 lg:pt-20 lg:pb-28 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Colonne Gauche -->
+      <div class="lg:col-span-7">
+        <!-- Badge Swiply -->
+        <div class="inline-flex items-center gap-2 bg-slate-100/80 border border-slate-200/80 rounded-full px-3.5 py-1.5 mb-8">
+          <span class="flex h-2 w-2 rounded-full bg-emerald-500"></span>
+          <span class="text-xs font-semibold text-slate-700 tracking-wide">Plaques NFC intelligentes pour commerces</span>
+        </div>
+
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-[1.15] tracking-tight mb-6">
+          Multipliez vos avis clients et vos abonnés avec <span class="text-brand-600">Swiply</span>.
+        </h1>
+        
+        <p class="text-slate-600 text-lg sm:text-xl font-normal mb-10 leading-relaxed max-w-2xl">
+          Plaques connectées sur-mesure et redirection instantanée. Permettez à vos clients de déposer un avis Google ou de rejoindre vos réseaux en 1 seconde chrono.
+        </p>
+        
+        <!-- CTA -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-12">
+          <a href="#contact" class="bg-brand-600 hover:bg-brand-700 text-white px-7 py-4 rounded-xl font-semibold text-base flex items-center justify-center gap-3 shadow-lg shadow-brand-500/20 transition-all duration-200">
+            Configurer mes plaques Swiply
+            <i class="fa-solid fa-arrow-right text-sm"></i>
+          </a>
+          <a href="#pourquoi" class="border border-slate-200 bg-white hover:bg-slate-50 text-slate-800 px-7 py-4 rounded-xl font-semibold text-base flex items-center justify-center gap-2 transition-all duration-200">
+            Découvrir la démo
+          </a>
+        </div>
+
+        <!-- Preuves d'impact -->
+        <div class="grid grid-cols-3 gap-6 pt-8 border-t border-slate-200/70">
+          <div>
+            <p class="font-display text-2xl font-bold text-slate-900">x4</p>
+            <p class="text-xs text-slate-500 font-medium mt-0.5">Avis Google en moyenne</p>
+          </div>
+          <div>
+            <p class="font-display text-2xl font-bold text-slate-900">&lt; 2 sec</p>
+            <p class="text-xs text-slate-500 font-medium mt-0.5">Temps de connexion</p>
+          </div>
+          <div>
+            <p class="font-display text-2xl font-bold text-slate-900">100%</p>
+            <p class="text-xs text-slate-500 font-medium mt-0.5">Sans application requise</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Colonne Droite: Incrustation Visuelle -->
+      <div class="lg:col-span-5 relative">
+        <div class="relative mx-auto max-w-lg lg:max-w-none">
+          
+          <!-- Soft Glows -->
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-brand-500/10 rounded-full blur-3xl -z-10"></div>
+          <div class="absolute -top-10 -right-10 w-60 h-60 bg-emerald-400/10 rounded-full blur-2xl -z-10"></div>
+
+          <!-- Image des plaques avec incrustation multiply -->
+          <div class="relative z-10 flex justify-center">
+            <img 
+              src="./images/nfc-cards.png" 
+              alt="Plaques Swiply NFC" 
+              class="w-full h-auto object-contain max-h-[460px] drop-shadow-xl mix-blend-multiply transition-transform duration-500 hover:scale-[1.02]"
+            >
+          </div>
+
+          <!-- Badges Flottants UI -->
+          <div class="absolute -top-4 -left-2 sm:-left-6 bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-2xl p-3.5 shadow-xl flex items-center gap-3 z-20">
+            <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center font-bold text-sm">
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-slate-900">Avis Google 5.0</p>
+              <p class="text-[11px] text-slate-500">Collecte automatisée</p>
+            </div>
+          </div>
+
+          <div class="absolute -bottom-6 -right-2 sm:-right-6 bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-2xl p-3.5 shadow-xl flex items-center gap-3 z-20">
+            <div class="w-9 h-9 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-sm font-bold">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-slate-900">Swiply Tap</p>
+              <p class="text-[11px] text-slate-500">Puce NFC ultra-rapide</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </section>
 
-    <!-- Filtres scrollables au doigt sur mobile -->
-    <div class="controls">
-      <button class="filter-btn active">Tous</button>
-      <button class="filter-btn">En cours</button>
-      <button class="filter-btn">Terminés</button>
-      <button class="filter-btn">Liste d'envies</button>
-    </div>
-
-    <!-- Grille Responsive -->
-    <div class="games-grid">
-      
-      <div class="game-card">
-        <img src="https://via.placeholder.com/400x225" alt="Cyberpunk 2077" class="game-cover">
-        <div class="game-info">
-          <h2 class="game-title">Cyberpunk 2077</h2>
-          <div class="game-meta">
-            <span>RPG</span>
-            <span>★ 4.5/5</span>
+    <!-- Section Logos -->
+    <section class="py-12 bg-white border-y border-slate-200/60">
+      <div class="max-w-7xl mx-auto px-6">
+        <p class="text-center text-xs font-semibold text-slate-400 uppercase tracking-widest mb-8">
+          Rejoint par plus de 500 restaurants, salons & commerces
+        </p>
+        <div class="flex flex-wrap items-center justify-between gap-8 opacity-70 grayscale hover:grayscale-0 transition-all duration-300">
+          <div class="flex items-center gap-2 font-display font-bold text-slate-700 text-lg">
+            <i class="fa-solid fa-utensils text-brand-600"></i> LE BISTROT DU PARC
           </div>
-          <a href="#" class="btn-details">Voir la fiche</a>
+          <div class="flex items-center gap-2 font-display font-semibold text-slate-700 text-lg">
+            <i class="fa-solid fa-scissors text-brand-600"></i> ATELIER COIFFURE
+          </div>
+          <div class="flex items-center gap-2 font-display font-bold text-slate-700 text-lg uppercase">
+            <i class="fa-solid fa-mug-hot text-brand-600"></i> Ô CAFÉ GOURMET
+          </div>
+          <div class="flex items-center gap-2 font-display font-extrabold text-slate-700 text-lg">
+            <i class="fa-solid fa-pizza-slice text-brand-600"></i> PIZZA NAPOLI
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="game-card">
-        <img src="https://via.placeholder.com/400x225" alt="Elden Ring" class="game-cover">
-        <div class="game-info">
-          <h2 class="game-title">Elden Ring</h2>
-          <div class="game-meta">
-            <span>Action RPG</span>
-            <span>★ 4.9/5</span>
+    <!-- Section Pourquoi choisir Swiply -->
+    <section id="pourquoi" class="py-20 lg:py-28">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-2xl mx-auto text-center mb-16">
+          <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Pourquoi Swiply ?</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 mt-2 mb-4">
+            Transformez chaque passage en caisse en opportunité digitale
+          </h2>
+          <p class="text-slate-600 text-base">
+            Les clients ne cherchent plus votre établissement sur internet : un simple rapprochement de téléphone déclenche l'action.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="bg-white p-8 rounded-2xl border border-slate-200/70 shadow-sm hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-900 flex items-center justify-center text-lg mb-6">
+              <i class="fa-solid fa-bolt-lightning text-brand-600"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Instant & Sans App</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Compatible avec 99% des smartphones iOS & Android sans aucune application à télécharger.</p>
           </div>
-          <a href="#" class="btn-details">Voir la fiche</a>
+
+          <div class="bg-white p-8 rounded-2xl border border-slate-200/70 shadow-sm hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-900 flex items-center justify-center text-lg mb-6">
+              <i class="fa-solid fa-sliders text-brand-600"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Redirection Dynamique</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Changez la destination de vos plaques (Avis Google, Instagram, Carte) quand vous le souhaitez.</p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl border border-slate-200/70 shadow-sm hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-900 flex items-center justify-center text-lg mb-6">
+              <i class="fa-solid fa-shield-halved text-brand-600"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Matériaux Haute Résistance</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Plaques résistant aux rayures, aux projections et au nettoyage quotidien de vos comptoirs.</p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl border border-slate-200/70 shadow-sm hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-900 flex items-center justify-center text-lg mb-6">
+              <i class="fa-solid fa-chart-pie text-brand-600"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Statistiques en direct</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Suivez précisément le nombre d'interactions enregistrées jour par jour sur votre dashboard.</p>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="game-card">
-        <img src="https://via.placeholder.com/400x225" alt="Genshin Impact" class="game-cover">
-        <div class="game-info">
-          <h2 class="game-title">Genshin Impact</h2>
-          <div class="game-meta">
-            <span>Aventure</span>
-            <span>★ 4.2/5</span>
+    <!-- Section Solutions / Packs -->
+    <section id="solutions" class="py-20 bg-slate-900 text-white">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-2xl mb-16">
+          <span class="text-xs font-bold text-brand-200 uppercase tracking-wider">Nos Plaques Swiply</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-2 text-white">
+            Choisissez la plaque adaptée à vos objectifs
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Pack Avis Google -->
+          <div class="bg-slate-800/80 border border-slate-700/80 p-8 rounded-2xl flex flex-col justify-between">
+            <div>
+              <div class="w-10 h-10 rounded-lg bg-brand-600/20 text-brand-200 flex items-center justify-center text-base mb-6">
+                <i class="fa-brands fa-google"></i>
+              </div>
+              <h3 class="font-display font-bold text-xl mb-3">Plaque Swiply Avis</h3>
+              <p class="text-slate-400 text-sm mb-6 leading-relaxed">Spécialement conçue pour maximiser votre note et votre classement Google Maps.</p>
+              <ul class="space-y-3 text-sm text-slate-300">
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Redirection directe formulaire Google</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> QR Code de secours imprimé</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Sans abonnement requis</li>
+              </ul>
+            </div>
           </div>
-          <a href="#" class="btn-details">Voir la fiche</a>
+
+          <!-- Pack Réseaux Sociaux -->
+          <div class="bg-slate-800/80 border border-slate-700/80 p-8 rounded-2xl flex flex-col justify-between">
+            <div>
+              <div class="w-10 h-10 rounded-lg bg-brand-600/20 text-brand-200 flex items-center justify-center text-base mb-6">
+                <i class="fa-brands fa-instagram"></i>
+              </div>
+              <h3 class="font-display font-bold text-xl mb-3">Plaque Swiply Social</h3>
+              <p class="text-slate-400 text-sm mb-6 leading-relaxed">Faites grimper en flèche vos abonnés Instagram, TikTok ou votre page Facebook.</p>
+              <ul class="space-y-3 text-sm text-slate-300">
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Ouverture automatique de l'application</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Multi-réseaux configurables</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Design sobre et moderne</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Pack Multi-Lien / Menu -->
+          <div class="bg-slate-800/80 border border-slate-700/80 p-8 rounded-2xl flex flex-col justify-between">
+            <div>
+              <div class="w-10 h-10 rounded-lg bg-brand-600/20 text-brand-200 flex items-center justify-center text-base mb-6">
+                <i class="fa-solid fa-layer-group"></i>
+              </div>
+              <h3 class="font-display font-bold text-xl mb-3">Plaque Swiply Smart</h3>
+              <p class="text-slate-400 text-sm mb-6 leading-relaxed">Une page d'atterrissage sur-mesure regroupant votre menu, WiFi et réseaux sociaux.</p>
+              <ul class="space-y-3 text-sm text-slate-300">
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Page de liens personnalisée</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Modification en temps réel</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Analyse des clics détaillée</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-    </div>
+    <!-- FAQ -->
+    <section id="faq" class="py-20 lg:py-28 max-w-4xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-3xl font-bold text-slate-900">Questions fréquentes</h2>
+      </div>
+
+      <div class="space-y-4">
+        <details class="group bg-white p-6 rounded-xl border border-slate-200/80 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between font-semibold text-slate-900 cursor-pointer">
+            <span>Comment configurer ma plaque Swiply ?</span>
+            <span class="transition group-open:-rotate-180"><i class="fa-solid fa-chevron-down text-xs text-slate-400"></i></span>
+          </summary>
+          <p class="mt-4 text-sm text-slate-600 leading-relaxed">C'est extrêmement simple : nous configurons votre plaque avant son expédition avec le lien de votre commerce. Dès réception, vous la posez sur votre comptoir et elle est 100% opérationnelle.</p>
+        </details>
+
+        <details class="group bg-white p-6 rounded-xl border border-slate-200/80 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between font-semibold text-slate-900 cursor-pointer">
+            <span>Y a-t-il un abonnement obligatoire ?</span>
+            <span class="transition group-open:-rotate-180"><i class="fa-solid fa-chevron-down text-xs text-slate-400"></i></span>
+          </summary>
+          <p class="mt-4 text-sm text-slate-600 leading-relaxed">Non, nos plaques de base fonctionnent sans aucun abonnement mensuel. Vous achetez la plaque une seule fois et elle vous appartient à vie.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Formulaire Contact -->
+    <section id="contact" class="py-20 bg-slate-100/70 border-t border-slate-200/60">
+      <div class="max-w-3xl mx-auto px-6">
+        <div class="bg-white rounded-2xl p-8 sm:p-12 border border-slate-200/80 shadow-sm">
+          <div class="text-center mb-10">
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-900">Équipez votre commerce avec Swiply</h2>
+            <p class="text-slate-500 text-sm mt-2">Remplissez ce formulaire pour recevoir un aperçu de vos plaques personnalisées sous 24h.</p>
+          </div>
+
+          <form onsubmit="event.preventDefault(); alert('Votre demande Swiply a bien été transmise !');" class="space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Nom / Prénom</label>
+                <input type="text" required placeholder="Jean Dupont" class="w-full px-4 py-3 text-sm rounded-lg border border-slate-200 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Nom du commerce</label>
+                <input type="text" required placeholder="Le Bistrot Gourmand" class="w-full px-4 py-3 text-sm rounded-lg border border-slate-200 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Email professionnel</label>
+                <input type="email" required placeholder="contact@commerce.fr" class="w-full px-4 py-3 text-sm rounded-lg border border-slate-200 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Téléphone</label>
+                <input type="tel" required placeholder="06 12 34 56 78" class="w-full px-4 py-3 text-sm rounded-lg border border-slate-200 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition">
+              </div>
+            </div>
+
+            <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3.5 rounded-xl text-sm transition shadow-md shadow-brand-500/10">
+              Obtenir mon devis Swiply gratuit
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200/80 py-12">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-slate-500">
+      <div class="flex items-center gap-2">
+        <span class="font-display font-bold text-slate-900 text-sm">Swiply.</span>
+        <span>© 2026. Tous droits réservés.</span>
+      </div>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-slate-900 transition">Mentions légales</a>
+        <a href="#" class="hover:text-slate-900 transition">Confidentialité</a>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
