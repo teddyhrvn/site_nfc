@@ -1,286 +1,373 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nom — Solutions NFC & Digitales</title>
+  <title>Nom — Digitalisez l'expérience client de votre commerce</title>
+  
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-    body { font-family: 'Inter', sans-serif; }
-  </style>
+  
+  <!-- Font Awesome pour icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Fonts Google Premium -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              200: '#bae0fd',
+              500: '#2563eb',
+              600: '#1d4ed8',
+              700: '#1e40af',
+              900: '#0f172a',
+              950: '#0b0f19',
+            }
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased">
+<body class="bg-[#fafbfc] text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
 
   <!-- En-tête / Navigation -->
-  <header class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-    <div class="flex items-center gap-2">
-      <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm font-bold">
-        <i class="fa-solid fa-wifi"></i>
+  <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-brand-900 text-white flex items-center justify-center font-bold text-base shadow-sm group-hover:bg-brand-600 transition-colors">
+          <i class="fa-solid fa-wifi rotate-90 text-sm"></i>
+        </div>
+        <span class="font-display text-xl font-extrabold tracking-tight text-slate-900">Nom</span>
+      </a>
+
+      <!-- Menu -->
+      <nav class="hidden md:flex items-center gap-9 text-sm font-medium text-slate-600">
+        <a href="#pourquoi" class="hover:text-brand-600 transition-colors">Pourquoi le NFC ?</a>
+        <a href="#services" class="hover:text-brand-600 transition-colors">Nos solutions</a>
+        <a href="#faq" class="hover:text-brand-600 transition-colors">FAQ</a>
+      </nav>
+
+      <!-- CTA Nav -->
+      <div class="flex items-center gap-4">
+        <a href="#contact" class="hidden sm:inline-flex items-center justify-center text-sm font-semibold text-slate-700 hover:text-slate-900 px-4 py-2 transition-colors">
+          Se connecter
+        </a>
+        <a href="#contact" class="bg-brand-900 hover:bg-brand-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-sm hover:shadow transition-all duration-200">
+          Demander une démo
+        </a>
       </div>
-      <span class="text-xl font-extrabold text-slate-900">Nom</span>
     </div>
-    <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-700">
-      <a href="#" class="hover:text-indigo-600 transition">Prendre rendez-vous</a>
-      <a href="#" class="hover:text-indigo-600 transition">Nos services</a>
-      <a href="#" class="hover:text-indigo-600 transition">Contact</a>
-    </nav>
-    <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition">
-      Demander un devis
-    </a>
   </header>
 
-  <!-- Section Hero -->
-  <section class="max-w-7xl mx-auto px-6 pt-8 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-    <div>
-      <span class="inline-block bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-full mb-6 tracking-wide uppercase">
-        N°1 POUR DÉVELOPPER VOTRE COMMERCE
-      </span>
-      <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight mb-6">
-        Développez votre commerce avec la technologie <span class="text-indigo-600">NFC</span>
-      </h1>
-      <p class="text-slate-600 text-lg mb-8 leading-relaxed max-w-lg">
-        Plaques NFC personnalisées et solutions digitales pour attirer, connecter et fidéliser vos clients.
-      </p>
-      
-      <div class="flex flex-wrap gap-4 mb-10">
-        <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3.5 rounded-xl font-semibold flex items-center gap-2 shadow-lg shadow-indigo-200 transition">
-          <i class="fa-regular fa-calendar"></i> Prendre rendez-vous
-        </a>
-        <a href="#" class="border border-slate-300 hover:bg-slate-100 text-slate-700 px-6 py-3.5 rounded-xl font-semibold flex items-center gap-2 transition">
-          Découvrir nos services <i class="fa-solid fa-chevron-right text-xs"></i>
-        </a>
-      </div>
+  <main>
+    <!-- Section Hero -->
+    <section class="max-w-7xl mx-auto px-6 pt-12 pb-20 lg:pt-20 lg:pb-28 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7">
+        
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 bg-slate-100/80 border border-slate-200/80 rounded-full px-3.5 py-1.5 mb-8">
+          <span class="flex h-2 w-2 rounded-full bg-emerald-500"></span>
+          <span class="text-xs font-semibold text-slate-700 tracking-wide">Technologie sans contact certifiée pour commerces</span>
+        </div>
 
-      <!-- Arguments clés -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-200">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600">
-            <i class="fa-solid fa-bolt"></i>
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-[1.15] tracking-tight mb-6">
+          Multipliez vos avis clients et votre réseau avec la technologie <span class="text-brand-600">NFC</span>.
+        </h1>
+        
+        <p class="text-slate-600 text-lg sm:text-xl font-normal mb-10 leading-relaxed max-w-2xl">
+          Plaques connectées sur-mesure et plateforme de redirection intelligente. Permettez à vos clients d'accéder à vos réseaux, avis Google ou menus en un simple geste.
+        </p>
+        
+        <!-- CTA & Actions -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-12">
+          <a href="#contact" class="bg-brand-600 hover:bg-brand-700 text-white px-7 py-4 rounded-xl font-semibold text-base flex items-center justify-center gap-3 shadow-lg shadow-brand-500/20 transition-all duration-200">
+            Commandez vos plaques
+            <i class="fa-solid fa-arrow-right text-sm"></i>
+          </a>
+          <a href="#services" class="border border-slate-200 bg-white hover:bg-slate-50 text-slate-800 px-7 py-4 rounded-xl font-semibold text-base flex items-center justify-center gap-2 transition-all duration-200">
+            Découvrir le fonctionnement
+          </a>
+        </div>
+
+        <!-- Preuves d'impact / Garanties -->
+        <div class="grid grid-cols-3 gap-6 pt-8 border-t border-slate-200/70">
+          <div>
+            <p class="font-display text-2xl font-bold text-slate-900">x4</p>
+            <p class="text-xs text-slate-500 font-medium mt-0.5">Avis Google en moyenne</p>
           </div>
           <div>
-            <h4 class="text-xs font-bold text-slate-900">Mise en place rapide</h4>
-            <p class="text-xs text-slate-500">En quelques jours seulement</p>
-          </div>
-        </div>
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600">
-            <i class="fa-regular fa-circle-check"></i>
+            <p class="font-display text-2xl font-bold text-slate-900">&lt; 2 sec</p>
+            <p class="text-xs text-slate-500 font-medium mt-0.5">Temps de connexion</p>
           </div>
           <div>
-            <h4 class="text-xs font-bold text-slate-900">100% Personnalisable</h4>
-            <p class="text-xs text-slate-500">À votre image</p>
-          </div>
-        </div>
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600">
-            <i class="fa-solid fa-chart-line"></i>
-          </div>
-          <div>
-            <h4 class="text-xs font-bold text-slate-900">Résultats mesurables</h4>
-            <p class="text-xs text-slate-500">Plus de visibilité et de clients</p>
+            <p class="font-display text-2xl font-bold text-slate-900">100%</p>
+            <p class="text-xs text-slate-500 font-medium mt-0.5">Sans application requise</p>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Visuel Cartes NFC -->
-    <div class="relative flex justify-center items-center">
-      <div class="absolute -z-10 w-96 h-96 bg-indigo-200/50 rounded-full blur-3xl"></div>
-      <!-- Image hébergée dans votre dépôt GitHub -->
-      <img src="./images/NFC-plate.png" alt="Cartes NFC de réseaux sociaux" class="w-full max-w-lg drop-shadow-2xl">
-    </div>
-  </section>
-
-  <!-- Section Pourquoi nous choisir -->
-  <section class="py-16 bg-white border-y border-slate-100">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <span class="bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-full uppercase">
-        POURQUOI NOUS CHOISIR ?
-      </span>
-      <h2 class="text-3xl font-extrabold text-slate-900 mt-4 mb-3">
-        Une solution simple, moderne et efficace
-      </h2>
-      <p class="text-slate-500 max-w-xl mx-auto mb-12">
-        Nous vous accompagnons de A à Z pour booster votre visibilité et améliorer l'expérience client.
-      </p>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-        <!-- Carte 1 -->
-        <div class="p-6 rounded-2xl border border-slate-100 bg-slate-50/50 text-left hover:shadow-md transition">
-          <div class="w-12 h-12 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-xl mb-4">
-            <i class="fa-solid fa-wifi"></i>
-          </div>
-          <h3 class="font-bold text-slate-900 mb-2">Technologie NFC</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">Une expérience fluide et innovante en un simple tap.</p>
-        </div>
-        <!-- Carte 2 -->
-        <div class="p-6 rounded-2xl border border-slate-100 bg-slate-50/50 text-left hover:shadow-md transition">
-          <div class="w-12 h-12 rounded-xl bg-pink-500 text-white flex items-center justify-center text-xl mb-4">
-            <i class="fa-solid fa-palette"></i>
-          </div>
-          <h3 class="font-bold text-slate-900 mb-2">Design Personnalisé</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">Des plaques à votre image pour marquer les esprits.</p>
-        </div>
-        <!-- Carte 3 -->
-        <div class="p-6 rounded-2xl border border-slate-100 bg-slate-50/50 text-left hover:shadow-md transition">
-          <div class="w-12 h-12 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-xl mb-4">
-            <i class="fa-solid fa-user-group"></i>
-          </div>
-          <h3 class="font-bold text-slate-900 mb-2">Plus de Clients</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">Attirez, engagez et fidélisez efficacement vos clients.</p>
-        </div>
-        <!-- Carte 4 -->
-        <div class="p-6 rounded-2xl border border-slate-100 bg-slate-50/50 text-left hover:shadow-md transition">
-          <div class="w-12 h-12 rounded-xl bg-amber-500 text-white flex items-center justify-center text-xl mb-4">
-            <i class="fa-solid fa-gear"></i>
-          </div>
-          <h3 class="font-bold text-slate-900 mb-2">Accompagnement</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">Un suivi personnalisé pour des résultats concrets.</p>
-        </div>
-      </div>
-
-      <!-- Statistiques -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-slate-100 pt-12">
-        <div>
-          <div class="text-3xl md:text-4xl font-extrabold text-indigo-600 mb-1">+500</div>
-          <div class="text-xs text-slate-500 font-medium">Commerces équipés</div>
-        </div>
-        <div>
-          <div class="text-3xl md:text-4xl font-extrabold text-indigo-600 mb-1">+30%</div>
-          <div class="text-xs text-slate-500 font-medium">De visibilité en moyenne</div>
-        </div>
-        <div>
-          <div class="text-3xl md:text-4xl font-extrabold text-indigo-600 mb-1">100%</div>
-          <div class="text-xs text-slate-500 font-medium">Clients satisfaits</div>
-        </div>
-        <div>
-          <div class="text-3xl md:text-4xl font-extrabold text-indigo-600 mb-1">24/7</div>
-          <div class="text-xs text-slate-500 font-medium">Support dédié</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section Nos Services -->
-  <section class="py-16 max-w-7xl mx-auto px-6">
-    <div class="text-center mb-12">
-      <span class="bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-full uppercase">
-        NOS SERVICES
-      </span>
-      <h2 class="text-3xl font-extrabold text-slate-900 mt-4">
-        Des solutions complètes pour développer votre activité
-      </h2>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Service 1 -->
-      <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
-        <div>
-          <div class="w-12 h-12 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-xl mb-6">
-            <i class="fa-solid fa-wifi"></i>
-          </div>
-          <h3 class="text-lg font-bold text-slate-900 mb-2">Plaques NFC Personnalisées</h3>
-          <p class="text-xs text-slate-500 mb-6">Augmentez votre visibilité avec des plaques NFC élégantes et efficaces.</p>
+      <!-- Visuel d'illustration -->
+      <div class="lg:col-span-5 relative">
+        <div class="relative mx-auto max-w-md lg:max-w-none">
+          <!-- Fond discret -->
+          <div class="absolute -inset-4 bg-gradient-to-tr from-brand-100 to-indigo-100 rounded-3xl blur-2xl opacity-60 -z-10"></div>
           
-          <ul class="space-y-3 text-xs text-slate-700 mb-8">
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Lien vers réseaux sociaux</li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Avis Google / TripAdvisor</li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Site web / Menu digital</li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Contenu 100% personnalisable</li>
-          </ul>
-        </div>
-        <a href="#" class="text-indigo-600 text-xs font-bold flex items-center gap-2 hover:gap-3 transition-all">
-          En savoir plus <i class="fa-solid fa-arrow-right"></i>
-        </a>
-      </div>
-
-      <!-- Service 2 -->
-      <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
-        <div>
-          <div class="w-12 h-12 rounded-xl bg-blue-500 text-white flex items-center justify-center text-xl mb-6">
-            <i class="fa-solid fa-code"></i>
+          <div class="bg-white rounded-2xl p-4 shadow-2xl border border-slate-100/80">
+            <img src="./images/nfc-cards.png" alt="Supports NFC réseaux sociaux" class="w-full h-auto object-contain rounded-xl">
           </div>
-          <h3 class="text-lg font-bold text-slate-900 mb-2">Développement Web & Mobile</h3>
-          <p class="text-xs text-slate-500 mb-6">Des solutions digitales sur mesure pour votre commerce.</p>
-          
-          <ul class="space-y-3 text-xs text-slate-700 mb-8">
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Sites vitrines & e-commerce</li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Applications mobiles</li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Réservation & paiement en ligne</li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Expérience utilisateur optimisée</li>
-          </ul>
         </div>
-        <a href="#" class="text-indigo-600 text-xs font-bold flex items-center gap-2 hover:gap-3 transition-all">
-          En savoir plus <i class="fa-solid fa-arrow-right"></i>
-        </a>
       </div>
+    </section>
 
-      <!-- Service 3 -->
-      <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
-        <div>
-          <div class="w-12 h-12 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-xl mb-6">
-            <i class="fa-solid fa-bullhorn"></i>
+    <!-- Logos / Recommandations commerçants -->
+    <section class="py-12 bg-white border-y border-slate-200/60">
+      <div class="max-w-7xl mx-auto px-6">
+        <p class="text-center text-xs font-semibold text-slate-400 uppercase tracking-widest mb-8">
+          Adopté par plus de 500 établissements indépendants & franchises
+        </p>
+        <div class="flex flex-wrap items-center justify-between gap-8 opacity-75 grayscale hover:grayscale-0 transition-all duration-300">
+          <div class="flex items-center gap-2 font-display font-bold text-slate-700 text-lg tracking-tight">
+            <i class="fa-solid fa-utensils text-brand-600"></i> LE BISTROT DU PARC
           </div>
-          <h3 class="text-lg font-bold text-slate-900 mb-2">Stratégie Digitale & Marketing</h3>
-          <p class="text-xs text-slate-500 mb-6">Boostez votre présence en ligne et attirez plus de clients.</p>
-          
-          <ul class="space-y-3 text-xs text-slate-700 mb-8">
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Référencement local (SEO)</li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Gestion des réseaux sociaux</li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Campagnes publicitaires</li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Analyse & reporting</li>
-          </ul>
+          <div class="flex items-center gap-2 font-display font-semibold text-slate-700 text-lg">
+            <i class="fa-solid fa-scissors text-brand-600"></i> ATELIER COIFFURE
+          </div>
+          <div class="flex items-center gap-2 font-display font-bold text-slate-700 text-lg uppercase">
+            <i class="fa-solid fa-mug-hot text-brand-600"></i> Ô Café Gourmet
+          </div>
+          <div class="flex items-center gap-2 font-display font-extrabold text-slate-700 text-lg">
+            <i class="fa-solid fa-pizza-slice text-brand-600"></i> PIZZA NAPOLI
+          </div>
         </div>
-        <a href="#" class="text-indigo-600 text-xs font-bold flex items-center gap-2 hover:gap-3 transition-all">
-          En savoir plus <i class="fa-solid fa-arrow-right"></i>
-        </a>
+      </div>
+    </section>
+
+    <!-- Section Pourquoi choisir / Valeur ajoutée -->
+    <section id="pourquoi" class="py-20 lg:py-28">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-2xl mx-auto text-center mb-16">
+          <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Pourquoi le NFC ?</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 mt-2 mb-4">
+            Transformez chaque passage en caisse en opportunité digitale
+          </h2>
+          <p class="text-slate-600 text-base">
+            Les clients ne cherchent plus votre enseigne manuellement. Un simple rapprochement de smartphone suffit.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Carte 1 -->
+          <div class="bg-white p-8 rounded-2xl border border-slate-200/70 shadow-sm hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-900 flex items-center justify-center text-lg mb-6">
+              <i class="fa-solid fa-bolt-lightning text-brand-600"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Instant & Sans App</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Compatible avec 99% des smartphones iOS & Android sans installation préalable.</p>
+          </div>
+
+          <!-- Carte 2 -->
+          <div class="bg-white p-8 rounded-2xl border border-slate-200/70 shadow-sm hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-900 flex items-center justify-center text-lg mb-6">
+              <i class="fa-solid fa-sliders text-brand-600"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Redirection Réorganisable</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Modifiez la destination de vos plaques (Avis, Instagram, Menu) à tout moment depuis votre espace.</p>
+          </div>
+
+          <!-- Carte 3 -->
+          <div class="bg-white p-8 rounded-2xl border border-slate-200/70 shadow-sm hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-900 flex items-center justify-center text-lg mb-6">
+              <i class="fa-solid fa-shield-halved text-brand-600"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Matériaux Pro & Durables</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Plaques résistant aux rayures, à l'eau et au nettoyage quotidien de votre comptoir.</p>
+          </div>
+
+          <!-- Carte 4 -->
+          <div class="bg-white p-8 rounded-2xl border border-slate-200/70 shadow-sm hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-900 flex items-center justify-center text-lg mb-6">
+              <i class="fa-solid fa-chart-pie text-brand-600"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Statistiques d'utilisation</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Suivez précisément le nombre de scannages et de clics générés jour par jour.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Nos Services -->
+    <section id="services" class="py-20 bg-slate-900 text-white">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-2xl mb-16">
+          <span class="text-xs font-bold text-brand-200 uppercase tracking-wider">Nos Solutions</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-2 text-white">
+            Tout ce dont vous avez besoin pour booster votre commerce
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div class="bg-slate-800/80 border border-slate-700/80 p-8 rounded-2xl flex flex-col justify-between">
+            <div>
+              <div class="w-10 h-10 rounded-lg bg-brand-600/20 text-brand-200 flex items-center justify-center text-base mb-6">
+                <i class="fa-solid fa-nfc-symbol"></i>
+              </div>
+              <h3 class="font-display font-bold text-xl mb-3">Plaques NFC Physiques</h3>
+              <p class="text-slate-400 text-sm mb-6 leading-relaxed">Design personnalisé avec votre logo, QR Code de secours et puce NFC haute performance intégrée.</p>
+              <ul class="space-y-3 text-sm text-slate-300">
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Google Avis & TripAdvisor</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Instagram, TikTok, Facebook</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Menu digital & WiFi client</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-slate-800/80 border border-slate-700/80 p-8 rounded-2xl flex flex-col justify-between">
+            <div>
+              <div class="w-10 h-10 rounded-lg bg-brand-600/20 text-brand-200 flex items-center justify-center text-base mb-6">
+                <i class="fa-solid fa-qrcode"></i>
+              </div>
+              <h3 class="font-display font-bold text-xl mb-3">Plateforme de Gestion</h3>
+              <p class="text-slate-400 text-sm mb-6 leading-relaxed">Un tableau de bord simple pour piloter le comportement de toutes vos plaques en temps réel.</p>
+              <ul class="space-y-3 text-sm text-slate-300">
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Modification des liens instantanée</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Analytics & rapport de clics</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Multi-établissements</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-slate-800/80 border border-slate-700/80 p-8 rounded-2xl flex flex-col justify-between">
+            <div>
+              <div class="w-10 h-10 rounded-lg bg-brand-600/20 text-brand-200 flex items-center justify-center text-base mb-6">
+                <i class="fa-solid fa-headset"></i>
+              </div>
+              <h3 class="font-display font-bold text-xl mb-3">Accompagnement & Setup</h3>
+              <p class="text-slate-400 text-sm mb-6 leading-relaxed">Notre équipe configure vos plaques avant expédition pour une installation immédiate ("Plug & Play").</p>
+              <ul class="space-y-3 text-sm text-slate-300">
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Configuration initiale offerte</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Support client dédié en France</li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Garantie remplacement à vie</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20 lg:py-28 max-w-4xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-3xl font-bold text-slate-900">Questions fréquentes</h2>
+      </div>
+
+      <div class="space-y-4">
+        <details class="group bg-white p-6 rounded-xl border border-slate-200/80 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between font-semibold text-slate-900 cursor-pointer">
+            <span>Le client doit-il télécharger une application ?</span>
+            <span class="transition group-open:-rotate-180"><i class="fa-solid fa-chevron-down text-xs text-slate-400"></i></span>
+          </summary>
+          <p class="mt-4 text-sm text-slate-600 leading-relaxed">Non, aucunement. Il suffit d'approcher le smartphone de la plaque (comme pour un paiement sans contact) pour qu'une notification apparaisse instantanément à l'écran.</p>
+        </details>
+
+        <details class="group bg-white p-6 rounded-xl border border-slate-200/80 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between font-semibold text-slate-900 cursor-pointer">
+            <span>Que se passe-t-il si je change de lien Google Avis ou de compte Instagram ?</span>
+            <span class="transition group-open:-rotate-180"><i class="fa-solid fa-chevron-down text-xs text-slate-400"></i></span>
+          </summary>
+          <p class="mt-4 text-sm text-slate-600 leading-relaxed">Vous pouvez modifier la destination de votre plaque en quelques clics depuis votre espace client. Pas besoin de recommander une nouvelle plaque physique !</p>
+        </details>
+
+        <details class="group bg-white p-6 rounded-xl border border-slate-200/80 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between font-semibold text-slate-900 cursor-pointer">
+            <span>Quels sont les délais de livraison ?</span>
+            <span class="transition group-open:-rotate-180"><i class="fa-solid fa-chevron-down text-xs text-slate-400"></i></span>
+          </summary>
+          <p class="mt-4 text-sm text-slate-600 leading-relaxed">Vos plaques sont configurées et expédiées sous 48 à 72 heures ouvrées partout en France et en Europe.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Section Contact / Devis (Formulaire Réel) -->
+    <section id="contact" class="py-20 bg-slate-100/70 border-t border-slate-200/60">
+      <div class="max-w-3xl mx-auto px-6">
+        <div class="bg-white rounded-2xl p-8 sm:p-12 border border-slate-200/80 shadow-sm">
+          <div class="text-center mb-10">
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-900">Équipons votre commerce dès aujourd'hui</h2>
+            <p class="text-slate-500 text-sm mt-2">Remplissez ce formulaire et recevez un aperçu de vos plaques sous 24h.</p>
+          </div>
+
+          <form onsubmit="event.preventDefault(); alert('Votre demande a bien été envoyée !');" class="space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Nom / Prénom</label>
+                <input type="text" required placeholder="Jean Dupont" class="w-full px-4 py-3 text-sm rounded-lg border border-slate-200 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Nom du commerce</label>
+                <input type="text" required placeholder="Le Bistrot Gourmand" class="w-full px-4 py-3 text-sm rounded-lg border border-slate-200 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Email professionnel</label>
+                <input type="email" required placeholder="contact@commerce.fr" class="w-full px-4 py-3 text-sm rounded-lg border border-slate-200 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Téléphone</label>
+                <input type="tel" required placeholder="06 12 34 56 78" class="w-full px-4 py-3 text-sm rounded-lg border border-slate-200 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Solution souhaitée</label>
+              <select class="w-full px-4 py-3 text-sm rounded-lg border border-slate-200 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition text-slate-700">
+                <option>Pack Avis Google NFC</option>
+                <option>Pack Réseaux Sociaux (Instagram / TikTok)</option>
+                <option>Pack Multi-Lien Sur-Mesure</option>
+              </select>
+            </div>
+
+            <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3.5 rounded-xl text-sm transition shadow-md shadow-brand-500/10">
+              Demander mon devis gratuit
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pied de page -->
+  <footer class="bg-white border-t border-slate-200/80 py-12">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-slate-500">
+      <div class="flex items-center gap-2">
+        <span class="font-display font-bold text-slate-900 text-sm">Nom</span>
+        <span>© 2026. Tous droits réservés.</span>
+      </div>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-slate-900 transition">Mentions légales</a>
+        <a href="#" class="hover:text-slate-900 transition">Politique de confidentialité</a>
+        <a href="#" class="hover:text-slate-900 transition">Conditions générales</a>
       </div>
     </div>
-  </section>
-
-  <!-- Section Confiance / Logos -->
-  <section class="py-12 bg-slate-100 border-t border-slate-200">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <span class="text-xs font-bold text-indigo-700 tracking-wider uppercase">ILS NOUS FONT CONFIANCE</span>
-      <h3 class="text-xl font-bold text-slate-900 mt-2 mb-8">Des commerçants satisfaits</h3>
-
-      <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-70 grayscale hover:grayscale-0 transition-all">
-        <span class="font-serif text-lg font-bold tracking-widest text-slate-800">Le Bistrot</span>
-        <span class="font-sans text-xs uppercase tracking-widest text-slate-800">LA BOUTIQUE</span>
-        <span class="font-serif text-lg font-extrabold text-slate-800">Ô CAFÉ</span>
-        <span class="font-sans text-sm font-bold tracking-wider text-slate-800">LE SALON</span>
-        <span class="font-mono text-sm font-bold text-slate-800">PIZZA</span>
-        <span class="text-xs font-semibold text-slate-500">Et plus de 500 commerces !</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Banner Call-to-Action (Bas de page) -->
-  <section class="max-w-7xl mx-auto px-6 py-12">
-    <div class="bg-gradient-to-r from-indigo-700 via-indigo-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
-      <div>
-        <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Prêt à développer votre commerce ?</h2>
-        <p class="text-indigo-100 text-sm max-w-md">Contactez-nous dès aujourd'hui pour un accompagnement personnalisé et des résultats rapides.</p>
-      </div>
-      <div class="flex flex-wrap gap-4 w-full md:w-auto">
-        <a href="#" class="bg-white text-indigo-700 hover:bg-slate-100 px-6 py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition w-full sm:w-auto">
-          <i class="fa-regular fa-calendar"></i> Prendre rendez-vous
-        </a>
-        <a href="#" class="bg-indigo-800/40 border border-indigo-400/30 hover:bg-indigo-800/60 text-white px-6 py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition w-full sm:w-auto">
-          <i class="fa-regular fa-comment"></i> Nous contacter
-        </a>
-      </div>
-    </div>
-  </section>
-
-</body>
-</html>
-        </a>
-      </div>
-    </div>
-  </section>
+  </footer>
 
 </body>
 </html>
